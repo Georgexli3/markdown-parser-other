@@ -118,39 +118,31 @@ public class MarkdownParseTest {
     }
 
     @Test
-    public void testSnippet1() throws IOException {
-        Path fileName = Path.of("Snippet1.md");
-        String content = Files.readString(fileName);
-        ArrayList<String> links = MarkdownParse.getLinks(content);
-        ArrayList<String> expected = new ArrayList<String>();
-        expected.add("`google.com");
-        boolean actual = links.equals(expected);
-        assertEquals(true, actual);
+    public void testSnippet1() throws IOException{
+        ArrayList<String> expectedList = new ArrayList<String>();
+        expectedList.add("url.com");
+        expectedList.add("google.com");
+        expectedList.add("google.com");
+        expectedList.add("ucsd.edu");
+        assertEquals(expectedList,MarkdownParse.getLinks("labreport4snippet1.md"));
     }
 
     @Test
-    public void testSnippet2() throws IOException {
-        Path fileName = Path.of("Snippet2.md");
-        String content = Files.readString(fileName);
-        ArrayList<String> links = MarkdownParse.getLinks(content);
-        ArrayList<String> expected = new ArrayList<String>();
-        expected.add("a.com");
-        expected.add("a.com(())");
-        expected.add("example.com");
-
-        boolean actual = links.equals(expected);
-        assertEquals(true, actual);
+    public void testSnippet2() throws IOException{
+        ArrayList<String> expectedList = new ArrayList<String>();
+        expectedList.add("a.com");
+        expectedList.add("b.com");
+        expectedList.add("example.com");
+        assertEquals(expectedList,MarkdownParse.getLinks("labreport4snippet2.md"));
     }
 
     @Test
-    public void testSnippet3() throws IOException {
-        Path fileName = Path.of("Snippet3.md");
-        String content = Files.readString(fileName);
-        ArrayList<String> links = MarkdownParse.getLinks(content);
-        ArrayList<String> expected = new ArrayList<String>();
-        expected.add("https://sites.google.com/eng.ucsd.edu/cse-15l-spring-2022/schedule");
-
-        boolean actual = links.equals(expected);
-        assertEquals(true, actual);
+    public void testSnippet3() throws IOException{
+        ArrayList<String> expectedList = new ArrayList<String>();
+        expectedList.add("https://www.twitter.com");
+        expectedList.add("https://sites.google.com/eng.ucsd.edu/cse-15l-spring-2022/schedule");
+        expectedList.add("github.com");
+        expectedList.add("https://cse.ucsd.edu/");
+        assertEquals(expectedList,MarkdownParse.getLinks("labreport4snippet3.md"));
     }
 }
